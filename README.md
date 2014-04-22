@@ -1,10 +1,9 @@
-##  devops_puppet_workshop
+devops_puppet_workshop
 ======================
 
 A little code to bootstrap a puppet workshop
 
-----------
-Setup required
+#Setup
 ----------
 
 We'll use a VM to try the Puppet code.
@@ -49,6 +48,17 @@ As simple as :
 cd vm-centOS6-64
 vagrant up
 ```
+
+# Workshop
+----------
+[Step 1 : Meet Vagrant](01_vagrant_up)
+
+[Step 2 : Init the VM](02_init_vm)
+
+[Step 3 : Standalone provisionning](03_standalone)
+
+[Step 4 : Agent/Master provisionning](04_agent_master)
+
 Enjoy
 
 > Written with [StackEdit](https://stackedit.io/).
