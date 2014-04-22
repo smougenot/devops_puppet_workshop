@@ -1,0 +1,52 @@
+Installation puppet master
+
+Repo yum puppet lab
+Commande :
+  sudo rpm -ivh http://yum.puppetlabs.com/el/6/products/i386/puppetlabs-release-6-6.noarch.rpm
+#Manip : 
+#  modifier  /etc/yum.repos.d/puppetlabs.repo pour activer le repo (enable=1 au lieu de enable=0)
+
+Installation puppet master et le lancer en service
+  yum install -y puppet-server
+  puppet resource service puppetmaster ensure=running enable=true
+  
+Dashboard (interface web
+Commande :
+  yum install -y mysql-server puppet-dashboard
+  chkconfig mysqld on
+  service mysqld start
+
+Mise à jour de la base
+1 passer le script suivant en utilisant le client : mysql
+  CREATE DATABASE dashboard CHARACTER SET utf8;
+  CREATE USER 'dashboard'@'localhost' IDENTIFIED BY 'my_password';
+  GRANT ALL PRIVILEGES ON dashboard.* TO 'dashboard'@'localhost';  
+  set GLOBAL max_allowed_packet = 33554432;
+2 modifier la config de puppet-dashboard
+  Le fichiers /usr/share/puppet-dashboard/config/database.yml
+  Pour avoir
+  production:
+    database: dashboard
+    username: dashboard
+    password: my_password
+    encoding: utf8
+    adapter: mysql
+3 lancer la mise à jour du schéma SQL
+ Dans el répertoire : /usr/share/puppet-dashboard/config
+ Commande :
+   rake RAILS_ENV=production db:migrate
+
+Passer le dashboard en service actif
+Commande :
+  chkconfig puppet-dashboard on
+  service puppet-dashboard start
+  chkconfig puppet-dashboard-workers on
+  service puppet-dashboard-workers start
+  
+Déployer les modules puppet via git
+ Commande :
+  yum install -y git
+  mv /etc/puppet /etc/puppet_backup
+  cd /etc/
+  git clone git://gitorious.sglk.local/ops/puppet.git
+  git checkout PREPROD

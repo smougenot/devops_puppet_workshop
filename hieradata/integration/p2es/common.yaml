@@ -1,0 +1,33 @@
+---
+
+# Versions
+
+# forcer les version quelque soit l'environnement
+# laisser 'undef' par défaut
+#pe_ensure                   : '1.8.0-589'
+# version de pe (en inté elle est ignorée)
+pe_version                  : 'undef'
+play_version                : 'undef'
+ps_version                  : 'undef'
+
+# Logins
+bdd_pe_login                 : 'l_pe'
+bdd_ps_login                 : 'l_ps'
+mongodb_login                : 'l_pa'
+ps_login                     : 'admin'
+
+# mot de passe par défaut
+jmx_ro_pwd                   : 'password'
+jmx_rw_pwd                   : 'password'
+
+# Mail
+mail_host                    : '10.10.25.26'
+mail_to                      : 'dev-p2es@sogelink.fr'
+mail_from                    : 'dev-p2es@sogelink.fr'
+
+#Conf spécifique
+file_conf_dir                : '/etc/pe'
+
+#Options pour les montages
+mount_ps					 : 'true'
+

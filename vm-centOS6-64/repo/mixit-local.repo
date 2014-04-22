@@ -1,0 +1,15 @@
+# Mixit-local
+#
+#  This repo can be used as a replacement when no/poor internet connection.
+#
+#  To use this repo (poor internet):
+#    yum --enablerepo=mixit-local [command]
+#  
+#  or to use ONLY this repo, (no internet):
+#    yum --disablerepo=\* --enablerepo=mixit-local [command]
+ 
+[mixit-local]
+name=mixit-$releasever - Local
+baseurl=file:///vagrant/repo/
+gpgcheck=0
+enabled=0

@@ -1,0 +1,21 @@
+---
+
+# Repo YUM
+yum_repo_host                : '10.10.25.5'
+# Nexus repo
+nexus_host                   : '10.10.25.10'
+# Git 
+git_host                     : '10.10.25.10'
+
+# Nexus : accès (maven repo)
+nexus_url                    : 'http://nexus:8081/nexus'
+nexus_username               : 'deployment'
+nexus_password               : 'password'
+nexus_repository             : 'public'
+
+# SMX
+broker.url.master                             : 'tcp://vsmxint1:61616'
+broker.url.slave                              : 'tcp://vsmxint2:61616'
+broker.memory.limit                           : '100 mb'
+broker.store.limit                            : '1 gb'
+broker.temp.limit                             : '100 mb'

@@ -1,0 +1,77 @@
+#
+# MyApp Configuration
+#
+# Vars starting with APP_ are used to replace contents in skeletons files
+#
+
+P2ES_HOME=/opt/p2es
+
+APP_ENV=DEV
+
+APP_SERVER_PORT=12374
+APP_HTTP_PORT=<%= http_port %>
+APP_HTTPS_PORT=12376
+APP_AJP_PORT=12377
+
+APP_RMIREGISTRY_PORT=12378
+APP_RMISERVER_PORT=12379
+APP_JVM_ROUTE=p2es_bo
+
+APP_HTTP_MAX_THREADS=150
+APP_HTTP_MIN_SPARE_THREADS=25
+
+APP_HTTPS_MAX_THREADS=150
+APP_HTTPS_MIN_SPARE_THREADS=25
+
+APP_AJP_MAX_THREADS=150
+APP_AJP_MIN_SPARE_THREADS=25
+
+APP_JMX_READER_USER=reader
+APP_JMX_READER_PASSWORD=@@SKEL_RO_PWD@@
+
+APP_JMX_ADMIN_USER=admin
+APP_JMX_ADMIN_PASSWORD=@@SKEL_RW_PWD@@
+
+#
+# Linux Service variables
+#
+CATALINA_HOME="/opt/p2es_bo"
+CATALINA_OUT="/var/log/p2es_bo/catalina.out"
+CATALINA_PID="/var/run/p2es_bo.pid"
+SHUTDOWN_WAIT=10
+
+export CATALINA_HOME CATALINA_OPTS CATALINA_OUT CATALINA_PID
+
+#
+# DataSource
+#
+APP_JDBC_URL="<%= @bdd_url %>"
+APP_JDBC_USERNAME=<%= @bdd_username %>
+APP_JDBC_PASSWORD=<%= @bdd_password %>
+APP_JDBC_DRIVERCLASSNAME=org.postgresql.Driver
+APP_JDBC_MAXACTIVE=30
+APP_JDBC_MAXIDLE=5
+APP_JDBC_MAXWAIT=10000
+APP_JDBC_JNDI='jdbc/P2ESDataSource'
+
+#
+# JVM Settings
+#
+APP_JAVA_HOME=
+APP_JAVA_OPTS="-Xms128m -Xmx256m -XX:MaxPermSize=128m -Xss512k -XX:+UseCompressedOops"
+APP_JAVA_OPTS="$APP_JAVA_OPTS -Djava.security.egd=file:/dev/./urandom"
+APP_JAVA_OPTS="$APP_JAVA_OPTS -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/var/log/p2es_bo"
+
+# Vérification de l'environnement
+checkEnv_cpl() {
+  if [ -z $P2ES_HOME ]; then
+    echo "La variable P2ES_HOME n'est pas définie"
+    exit 2
+  fi
+
+  if [ ! -r $P2ES_HOME/config/p2es.properties ]; then
+    echo "Le fichier de configuration (dans P2ES_HOME) $P2ES_HOME/config/p2es.properties n'est pas lisible"
+    exit 2
+  fi
+  export P2ES_HOME
+}

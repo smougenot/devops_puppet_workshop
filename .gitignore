@@ -1,0 +1,11 @@
+.vagrant
+VM/centOS6-64/*.rpm
+keyrings/*
+*.orig
+VM/centOS6-64/archive/
+.vagrant*
+
+*.rpm
+repodata
+
+ssl

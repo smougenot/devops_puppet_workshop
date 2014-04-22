@@ -1,0 +1,35 @@
+#===============================================================================
+# PE configuration de l'environnement
+#
+# Environnement :
+# - La variable d'environnement _JAVA_OPTS (environnement pour la JVM)
+#===============================================================================
+
+# Environnement
+
+# BDD
+PE_DATASOURCE_HOST=<%= @pe_bdd_host %>
+PE_DATASOURCE_PORT=5432
+PE_DATASOURCE_DBNAME=pe
+PE_DATASOURCE_USERNAME=<%= @pe_bdd_username %>
+PE_DATASOURCE_PASSWORD=<%= @pe_bdd_password %>
+
+# PS
+# URL du service ex :http://10.10.25.22:12380/ws
+PS_URL=<%= @ps_url %>
+PS_USERNAME=<%= @ps_username %>
+PS_PASSWORD=<%= @ps_password %>
+
+# Autre
+
+# Mise en forme de variable d'environnement système pour la JVM
+#BDD
+_JAVA_OPTS="${_JAVA_OPTS} -Dpe.datasource.host=${PE_DATASOURCE_HOST}"
+_JAVA_OPTS="${_JAVA_OPTS} -Dpe.datasource.port=${PE_DATASOURCE_PORT}"
+_JAVA_OPTS="${_JAVA_OPTS} -Dpe.datasource.dbName=${PE_DATASOURCE_DBNAME}"
+_JAVA_OPTS="${_JAVA_OPTS} -Dpe.datasource.username=${PE_DATASOURCE_USERNAME}"
+_JAVA_OPTS="${_JAVA_OPTS} -Dpe.datasource.password=${PE_DATASOURCE_PASSWORD}"
+#PS
+_JAVA_OPTS="${_JAVA_OPTS} -Dps.client.url.base=${PS_URL}"
+_JAVA_OPTS="${_JAVA_OPTS} -Dps.client.user=${PS_USERNAME}"
+_JAVA_OPTS="${_JAVA_OPTS} -Dps.client.pwd=${PS_PASSWORD}"

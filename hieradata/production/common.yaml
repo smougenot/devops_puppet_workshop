@@ -1,0 +1,17 @@
+---
+# Indiquer l'environnement
+environment    : 'prod'
+
+# Repo YUM
+yum_repo_host                : '10.10.25.5'
+# Nexus repo
+nexus_host                   : '10.10.25.10'
+# Git 
+git_host                     : '10.10.25.10'
+
+# SMX
+broker.url.master                             : 'tcp://10.10.31.46:61616'
+broker.url.slave                              : 'tcp://10.10.31.47:61616'
+broker.memory.limit                           : '100 mb'
+broker.store.limit                            : '8 gb'
+broker.temp.limit                             : '500 mb'

@@ -1,0 +1,13 @@
+---
+:backend:
+  - yaml
+
+
+:hierarchy:
+  - %{::fqdn}
+  - configuration
+  - password
+  - common
+
+:yaml:
+  :datadir: '/etc/puppet/hieradata/%{::environment}/%{projet}'

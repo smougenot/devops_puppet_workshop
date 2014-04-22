@@ -1,0 +1,145 @@
+---
+
+# Base PE
+bdd_pe_host                 : '10.10.25.23'
+bdd_pe_password             : 'l_pe'
+
+# Base PS
+bdd_ps_host                 : '10.10.25.23'
+bdd_ps_password             : 'l_ps'
+
+# Accès PS
+ps_url                      : 'http://loadbalancerPs/ws'
+ps_password                 : 'password'
+
+# taille max des uploads : 30Mo : 30 * 1024 *1024
+ps_maxpostsize				: '31457280'
+
+
+
+# Loadbalanceur
+loadbalanceur_input_path            : '/opt/loadbalancer'
+loadbalanceur_copie_path            : ''
+loadbalanceur_critere_mode          : 'mail, dictmail'
+# true ou false selon si on veut créer des sous répertoire pour la copie
+loadbalanceur_sousrepertoire        : 'true'
+min_avant_traitement_gestion_erreur : '1440'
+min_avant_lancement_gestion_erreur  : '1440'
+cron_gestion_erreur                 : '0 0 0/2 * * ?'
+ftp_v2_host                         : '10.10.25.22'
+ftp_v2_port                         : '21'
+# ---- ATTENTION ftp_v2 ---- modifier en conséquence p2es_clients_2 plus loin
+ftp_v2_username                     : 'dictv5_bouchon'
+ftp_v2_password                     : 'dictv5'
+ftp_v3_host                         : '10.10.25.22'
+ftp_v3_port                         : '21'
+ftp_v3_username                     : 'dictv5_bouchon'
+ftp_v3_password                     : 'dictv5'
+
+# Alias du serveur nfs pour ps et pe
+#
+mount_serveur_alias         : [ 'nfspe', 'nfsps' ]
+
+# Adresse IP du serveur nfs pour ps et pe
+#
+mount_serveur_ip            : '10.10.25.65'
+
+# P2ES V2
+
+# versions
+version_p2esautomate        : 2.2.3-SNAPSHOT
+version_p2eslib             : 2.2.3-SNAPSHOT
+version_upload_esker        : 0.0.5
+
+# paramétrages
+p2es_gid                    : 501
+
+#
+#Clients de p2es v2
+#
+#id = numéro d'id dans la base p2es
+#uid = le uid (système) pour cet utilisateur
+#user/password = le compte ftp
+#Si le champ password n'est pas renseigné, le compte ftp n'est pas créé
+#uid et password sont facultatifs
+p2es_clients_nb             : [1 , 2 , 3 , 5 , 6 , 7]
+p2es_clients_1              : {
+    id        : 1 ,
+    uid       : 1330 ,
+    user      : ftp_dictv4 ,
+    password  : dict_integration
+	}
+p2es_clients_2              : {
+    id        : 2 ,
+    uid       : 1335 ,
+    user      : ftp_dictv5 ,
+    password  : dictv5_integration
+	}
+p2es_clients_3              : {
+    id        : 3 ,
+    uid       : 1331 ,
+    user      : ftp_sem ,
+    password  : sem_integration
+	}
+p2es_clients_5              : {
+    id        : 5 ,
+    uid       : 1336 ,
+    user      : ftp_inmode ,
+    password  : inmode_integration
+	}
+p2es_clients_6              : {
+    id        : 6,
+    user      : v5Bpo
+	}
+p2es_clients_7              : {
+    id        : 7,
+    user      : exteliaBpo
+	}
+
+# Bouchons p2es V2
+# Il faut maintenir la cohérence avec la base de donnée
+# pour les mots de passe des fournisseurs bouchonnés
+#
+
+# Ftp esker
+esker_usr     : ftp_esker
+esker_pwd     : esker_integration
+esker_uid     : 1332
+
+# Ftp extelia
+extelia_usr   : ftp_extelia
+extelia_pwd   : extelia_integration
+extelia_uid   : 1333
+
+# Ftp altea
+altea_usr     : ftp_altea
+altea_pwd     : altea_integration
+altea_uid     : 1334
+
+# P2ES V2 BO
+p2es_bo_port                : 12375
+p2es_bo_bdd_url             : 'jdbc:postgresql://vPgP2esInt:5432/p2es'
+p2es_bo_bdd_username        : 'p2es'
+p2es_bo_bdd_password        : 'p2es'
+p2es_bo_version             : '1.2.3_SNAPSHOT'
+
+## P2ES V2 : PEESLINK utilise aussi p2es_bo_bdd_*
+peeslink_version            : 'latest'
+
+# PE Archivage
+# Durée en heure qu'un job reste à l'état terminé avant archivage
+archivage_duree 			: 8760
+archivage_cron  			: '5 5 * * * *'
+archivage_mongo_hostname_1 	: '10.10.25.39'
+archivage_mongo_hostname_2 	: '10.10.25.39'
+archivage_mongo_hostname_3 	: '10.10.25.39'
+archivage_mongo_port_1 		: 27017
+archivage_mongo_port_2 		: 27018
+archivage_mongo_port_3 		: 27019
+archivage_mongo_database 	: 'pe'
+archivage_filedump_path		: '/opt/archivage/dump'
+
+
+# Client JMX en ligne de commande
+jmxterm_url     : 'http://yumrepo/Download/jmxterm-@VERSION@-uber.jar'
+jmxterm_version : '1.0-alpha-4'
