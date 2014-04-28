@@ -35,6 +35,11 @@ class profile::octopus inherits profile{
 }
 
 class profile::gendoc inherits profile{
-	# Nom du projet pour hiera
-	$projet         = 'gendoc'
+  # Nom du projet pour hiera
+  $projet         = 'gendoc'
+}
+
+class profile::workshop inherits profile{
+  # Nom du projet pour hiera
+  $projet         = "workshop"
 }

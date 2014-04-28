@@ -43,6 +43,14 @@ puppet agent -tdv
 
 ----------
 
+## Step five
+Local puppet to provision a httpd
+```bash
+puppet apply --modulepath=/vagrant_puppet/modules/ -dv -e " Exec { path => '/bin/:/sbin/:/usr/bin/:/usr/sbin/'} include profile::workshop::p_http"
+```
+
+----------
+
 ## Usefull
 All facts on the machine
 ```bash
