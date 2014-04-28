@@ -15,8 +15,9 @@
 #
 class commun::http
 (
-	$service            =   true,
-	$start              =   true,
+  $service            =   true,
+  $start              =   true,
+  $maconf
 )
 {
     # service http
@@ -30,6 +31,14 @@ class commun::http
         group   => root,
         mode    => 755,
         source  => 'puppet:///modules/commun/vagrant.html',
+        require => Package['httpd']
+    }
+
+    file{ '/var/www/html/welcome.html':
+        owner   => root,
+        group   => root,
+        mode    => 755,
+        content => template('commun/welcome.html.erb'),
         require => Package['httpd']
     }
 
