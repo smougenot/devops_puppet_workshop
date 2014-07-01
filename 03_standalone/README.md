@@ -29,7 +29,7 @@ This must fail (there is no service puppetmaster yet)
 
 **Let's provision**
 ```bash
-puppet apply --modulepath=/vagrant_puppet/modules/ -dv -e "Exec { path => '/bin/:/sbin/:/usr/bin/:/usr/sbin/'} include puppet::master_install"
+puppet apply --modulepath=/vagrant_puppet/modules/ -dv -e "Exec { path => '/bin/:/sbin/:/usr/bin/:/usr/sbin/'} include profile::workshop::puppetmaster_p"
 ```
 This runs puppet and tells him to add the relevant componant to the VM : those described in the puppet::master_install class.
 
