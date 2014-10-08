@@ -4,7 +4,7 @@
 #
 
 # addon pour installer le repo puppet
-yum localinstall http://yum.puppetlabs.com/puppetlabs-release-el-7.noarch.rpm
+yum localinstall -y http://yum.puppetlabs.com/puppetlabs-release-el-7.noarch.rpm
 
 
 # git puppet
