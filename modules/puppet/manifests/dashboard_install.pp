@@ -14,6 +14,9 @@ class puppet::dashboard_install
     $dashboardDbPwd     = 'apicil2014',
 )
 {
+  
+  include puppet::repo::puppetlabs
+  
   # puppet-dashboard
   package { 
   'mysql-server':

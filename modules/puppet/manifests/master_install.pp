@@ -13,6 +13,8 @@ class puppet::master_install
     $start              =   true,
 )
 {
+  include puppet::repo::puppetlabs
+  
   # puppet-master
   package { 'puppet-server':
     ensure      => 'present',
